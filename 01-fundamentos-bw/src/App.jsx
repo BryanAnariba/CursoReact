@@ -1,28 +1,11 @@
 
 import { useState } from 'react';
 import './App.css';
+import { Frutas } from './components/Frutas';
+import { SaludoBienvenida } from './components/SaludoBienvenida';
+import { SaludoSalida } from './components/SaludoSalida';
+import Counter from './components/Counter';
 
-const SaludoBienvenida = () => {
-  return (
-    <>
-      <br />
-      <strong className='text-primary'>
-        Bienvenido........
-      </strong>
-    </>
-  )
-}
-
-const SaludoSalida = () => {
-  return (
-    <>
-      <br />
-      <strong className='text-primary'>
-        Adiosito........
-      </strong>
-    </>
-  )
-}
 
 const App = () => {
   const [ estasLogueado, setEstasLogueado ] = useState( false );
@@ -45,7 +28,7 @@ const App = () => {
         <div className="row">
           <div className="col-12 mx-auto">
             <strong className={ textStyles.success }>{ message }</strong>
-            <br />
+            <hr />
             <br />
             <strong className={ textStyles.dark }>Renderizado Condicional</strong>
             {
@@ -57,20 +40,27 @@ const App = () => {
             }
             <br />
             <button
-              onClick={ cambiaEstadoLogueo }
+              onClick={ () => cambiaEstadoLogueo( 'Bryan Ariel' ) }
               className={ ( estasLogueado ) ? 'btn btn-danger' : 'btn btn-success' }
             >
               { ( estasLogueado ) ? 'Cerrar Sesion' : 'Iniciar Sesion' }
             </button>
+            <hr />
             <br />
             <strong className={ textStyles.dark }>Muesta de listas recorriendo arrays</strong>
             <ol>
               {
                 lenguajesDeProgramacion.map(( lenguaje, index ) => (
-                  <li key={ index }>{ lenguaje }</li>
+                  <Frutas 
+                    key={ index }
+                    lenguaje={ lenguaje } 
+                  />
                 ))
               }
             </ol>
+            <hr />
+            <br />
+            <Counter />
           </div>
         </div>
       </div>
@@ -82,4 +72,5 @@ export {
   App, 
 };
 
-// 1:42
+
+// 35 faltan
