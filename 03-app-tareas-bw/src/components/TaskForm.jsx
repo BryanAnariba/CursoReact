@@ -1,17 +1,19 @@
-import { useState } from "react";
 // ES6 Modules or TypeScript
 import Swal from 'sweetalert2';
+import { v4 as uuidv4 } from 'uuid';
+import { useForm } from "../hooks/useForm";
 
-export const TaskForm = () => {
-
-    const [ tarea, setTarea ] = useState({
+export const TaskForm = ( { addTarea } ) => {
+    const initialState = {
         tituloTarea: '',
         descripcionTarea: '',
         estadoTarea: 'P',
         prioridadTarea: false
-    });
+    };
+    //const [ tarea, setTarea ] = useState( initialState );
+    const [ handleInputChange, reset, inputs ] = useForm( initialState );
 
-    const { tituloTarea, descripcionTarea, estadoTarea, prioridadTarea } = tarea;
+    const { tituloTarea, descripcionTarea, estadoTarea, prioridadTarea } = inputs;
 
     const handleSubmit = ( e ) => {
         e.preventDefault();
@@ -24,19 +26,21 @@ export const TaskForm = () => {
         if ( !descripcionTarea.trim() ) {
             return Swal.fire( { icon: 'error', title: 'Ops!!!!', text: 'Ha ocurrido un error', footer: 'Descripcion de la tarea es obligatorio' } );
         }
+
+        // Agregamos la tarea
+        addTarea({ 
+            id: uuidv4(),
+            tituloTarea: tituloTarea, 
+            descripcionTarea: descripcionTarea, 
+            estadoTarea: ( estadoTarea === 'P' ) ? false : true, 
+            prioridadTarea: prioridadTarea 
+        });
         Swal.fire(
             'Guardado Exitosamente',
-            `Tarea ${ tarea.tituloTarea } Guardada Exitosamente.`,
+            `Tarea Guardada Exitosamente.`,
             'success'
         );
-    }
-    const handleInputChange = ( e ) => {
-        const { name, value, checked, type } = e.target;
-
-        setTarea({
-            ...tarea,
-            [name]: ( type === 'checkbox' ? checked : value )
-        });
+        reset( initialState );
     }
     return (
         <>
