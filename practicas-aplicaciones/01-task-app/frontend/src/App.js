@@ -19,7 +19,7 @@ function App() {
           <Routes>
             <Route path='/' element={ <TaskTable /> }/>
             <Route path='/contact' element={ <Contact /> } />
-            <Route path='/create' element={ <TaskForm /> } />
+            <Route path='/create-task' element={ <TaskForm /> } />
             <Route path='*' element={ <NotFound /> } />
           </Routes>
         </div>

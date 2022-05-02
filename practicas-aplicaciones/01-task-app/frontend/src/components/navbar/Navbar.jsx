@@ -13,6 +13,7 @@ export const Navbar = () => {
                 <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="navbar-nav ms-auto">
                     <NavLink className="nav-link active" aria-current="page" to="/">Home</NavLink>
+                    <NavLink className="nav-link active" aria-current="page" to="/create-task">Create</NavLink>
                     <NavLink className="nav-link" to="/contact">Contact</NavLink>
                     {/*<NavLink className="nav-link" to="#">Pricing</NavLink> */}
                 </div>

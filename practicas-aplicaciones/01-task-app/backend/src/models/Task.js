@@ -7,7 +7,7 @@ const taskSchema = new Schema({
     },
     priority: {
         type: String,
-        default: [ true, 'Priority is required' ]
+        required: [ true, 'Priority is required' ]
     },
     done: {
         type: Boolean,
