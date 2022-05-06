@@ -1,5 +1,5 @@
 import './App.css';
-
+import React from 'react';
 import { Message } from './components/Message';
 import { Excersice } from './components/Excersice';
 
@@ -25,5 +25,3 @@ function App() {
 }
 
 export default App;
-
-// 1:05

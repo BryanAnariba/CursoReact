@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "course": "Midudev Full Stack BootCamp",
+        "chapter": "Client Server model"
+    },
+    {
+        "id": 2,
+        "course": "React Fundamentals",
+        "chapter": "Intro JS"
+    },
+    {
+        "id": 3,
+        "course": "React Fundamentals",
+        "chapter": "Conditional Rendering"
+    },
+    {
+        "id": 4,
+        "course": "React Fundamentals",
+        "chapter": "Hooks Intro"
+    }
+]
