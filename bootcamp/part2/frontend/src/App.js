@@ -7,6 +7,7 @@ import { Card } from './components/Card';
 function App( { data = [] }) {
   const [ notes, setNotes] = useState( data );
   const [ newNote, setNewNote ] = useState( '' );
+  const [ filterNotes, setFilterNotes ] = useState( false );
   
   const handleInputChange = ( event ) => {
     setNewNote( event.target.value );
@@ -24,6 +25,11 @@ function App( { data = [] }) {
     setNotes( [ ...notes, addNote ] );
     setNewNote( '' );
   }
+
+  const handleFilterNote = () => {
+    setFilterNotes( !filterNotes );
+  }
+
   return (
     <>
       <h1 className='display-3 text-center'>Notes</h1>
@@ -43,6 +49,11 @@ function App( { data = [] }) {
                     value={ newNote }
                   />
                 </div>
+                <button  
+                  type="button" 
+                  className="btn btn-info m-2"
+                  onClick={ handleFilterNote }
+                  >{ ( filterNotes === true ) ? 'Show All Notes' : 'Show Important Notes' }</button>
                 <button type="submit" className="btn btn-primary">Save Note</button>
               </form>
             </div>
@@ -54,7 +65,14 @@ function App( { data = [] }) {
             ?
               <strong>Notes Not Found........</strong> 
             :
-              notes.map( note => (
+              notes
+              .filter( note => {
+                if ( note.important === filterNotes ) {
+                  return note;
+                }
+                return note.important === true;
+              })
+              .map( note => (
                   <Card note={ note } key={ note.id }/>
                 ))
           }

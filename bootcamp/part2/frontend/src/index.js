@@ -23,6 +23,18 @@ const data = [
     date: "2021-05-30T18:39:34.091Z",
     important: false
   },
+  {
+    id: 4,
+    content: "Learn Svelte",
+    date: "2021-05-30T18:39:34.091Z",
+    important: true
+  },
+  {
+    id: 5,
+    content: "Learn Python",
+    date: "2021-05-30T18:39:34.091Z",
+    important: true
+  },
 ];
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
