@@ -18,6 +18,10 @@
     "mongoose": "^6.3.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.16"
+    "nodemon": "^2.0.16",
+    "standart": "^6.1.0"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/standart/eslintrc.json"
   }
 }

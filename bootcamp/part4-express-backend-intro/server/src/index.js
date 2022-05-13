@@ -1,9 +1,12 @@
-require( 'dotenv' ).config();
-const { Server } = require('./Server');
+require( 'dotenv' ).config()
+const { Server } = require('./Server')
 
 const main = () => {
     const server = new Server();
-    server.start();
+    server.start()
 }
 
-main();
+main()
+
+
+// eslint init config-> ./node_modules/.bin/eslint --init

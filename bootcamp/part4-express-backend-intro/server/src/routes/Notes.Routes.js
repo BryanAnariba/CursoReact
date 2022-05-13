@@ -1,11 +1,18 @@
 const { Router } = require( 'express' );
+const { NoteController } = require('../controllers/NoteController');
 
 const router = Router();
-router.get( '', ( req, res ) => {
-    return res.status( 200 ).json( { data: 'note api get works' } )
-});
+const NotesCTRL = new NoteController();
 
-//38
+router.get( '', NotesCTRL.getAllNotes );
+
+router.get( '/:noteId', NotesCTRL.getOneNote );
+
+router.post( '', NotesCTRL.createNote );
+
+router.put( '/:noteId', NotesCTRL.updateOneNote );
+
+router.delete( '/:noteId', NotesCTRL.deleteOneNote );
 
 module.exports = {
     NotesRouter: router,
