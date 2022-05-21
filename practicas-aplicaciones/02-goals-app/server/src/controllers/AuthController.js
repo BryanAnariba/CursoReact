@@ -60,8 +60,9 @@ class AuthController {
 
             if ( user ) {
                 return res.status( 201 ).json( { status: 200, data: { 
-                    user: user, 
-                    uid: user._id,
+                    name: user.name, 
+                    email: user.email,
+                    _id: user._id,
                     message: 'Created Successfully.' },
                     token: this.generateToken( user._id )
                 });

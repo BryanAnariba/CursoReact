@@ -1,6 +1,6 @@
 const EndPoints = {
     goals: '/api/goals',
-    auth: '/api/auth',
+    auth: '/api/auth/users/',
 }
 
 module.exports = {
