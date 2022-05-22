@@ -42,7 +42,7 @@ const Login = () => {
             ...previusState,
             [e.target.name]: e.target.value,
         }));
-        console.log( formData );
+        //console.log( formData );
     }
 
     const onSubmit = ( e ) => {

@@ -19,7 +19,7 @@ class AuthController {
                     data: {
                         email: user.email,
                         name: user.name,
-                        uid: user._id,
+                        _id: user._id,
                         token: this.generateToken( user._id )
                     }
                 });
@@ -77,13 +77,14 @@ class AuthController {
     })
 
     getMe = asyncHandler( async ( req = request, res = response ) => {
-        const { _id, name, email } = await User.findById( req.user.id );
-        try {
-            return res.status( 200 ).json( { status: 200, data: { id: _id, name, email } });
-        } catch ( err ) {
-            res.status( 400 )
-            throw new Error( `Sometime went wrong ${ err }` );
-        }
+        // const { _id, name, email } = await User.findById( req.user.id );
+        // try {
+        //     return res.status( 200 ).json( { status: 200, data: { id: _id, name, email } });
+        // } catch ( err ) {
+        //     res.status( 400 )
+        //     throw new Error( `Sometime went wrong ${ err }` );
+        // }
+        return res.status( 200 ).json( { status: 200, data: req.user });
     })
 
     generateToken = ( id ) => {

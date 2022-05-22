@@ -65,13 +65,15 @@ class GoalController {
                 throw new Error( `Goal Not found` );
             }
 
-            const user = await UserModel.find({ user: req.user.id });
-            if ( !user ) {
+            //const user = await UserModel.find({ user: req.user.id });
+            //if ( !user ) {
+            if ( !req.user ) {
                 res.status( 401 )
                 throw new Error( `Unauthorize` );
             }
 
-            if ( !goal.user.toString() !== user.id ) {
+            //if ( !goal.user.toString() !== user.id ) {
+            if ( !goal.user.toString() !== req.user.id ) {
                 res.status( 401 )
                 throw new Error( `Unauthorize you are not the same user` );
             }
@@ -100,14 +102,15 @@ class GoalController {
 
 
             // Search the user for compare the id with de user of the request, find user filter with req.user.id
-            const user = await UserModel.find({ user: req.user.id });
-            if ( !user ) {
+            //const user = await UserModel.find({ user: req.user.id });
+            // if ( !user ) {
+            if ( !req.user ) {
                 res.status( 401 )
                 throw new Error( `Unauthorize` );
             }
 
             // if the user._id does not equals to req.user.id return unathorized
-            if ( !goal.user.toString() !== user.id ) {
+            if ( !goal.user.toString() !== req.user.id ) {
                 res.status( 401 )
                 throw new Error( `Unauthorize you are not the same user` );
             }

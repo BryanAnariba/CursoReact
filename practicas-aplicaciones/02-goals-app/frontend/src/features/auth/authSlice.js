@@ -88,7 +88,7 @@ export const authSlice = createSlice({
         })
         .addCase( logOut.fulfilled, ( state ) => { // Aqui empiezan las acciones de logout
             state.isLoading = false;
-            state.isError = true;
+            state.isError = false;
             state.message = '';
             state.user = null;
         })
