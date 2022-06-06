@@ -3,6 +3,7 @@ import { AuthController } from '../controllers/AuthController.js';
 import { body } from 'express-validator';
 
 import { validationsErrors } from '../middlewares/validationErrors.js';
+import { verifyToken } from '../middlewares/verifyToken.js';
 
 const router = Router();
 const authController = new AuthController();
@@ -40,7 +41,10 @@ router.post(
             .isLength({ min: 6 })
     ],
     validationsErrors,
-    authController.login );
+    authController.login 
+);
+
+router.get( '/profile', verifyToken ,authController.infoUser );
 
 export {
     router as AuthRoutes

@@ -9,7 +9,6 @@ class Connection {
         })
         .catch(( err ) => {
             throw new Error( `Error: ${ err }` );
-            console.log( '====================================================================='.red );
         })
     }
 }
