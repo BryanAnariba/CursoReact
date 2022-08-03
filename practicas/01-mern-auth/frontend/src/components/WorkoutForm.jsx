@@ -4,12 +4,13 @@ import { ToastContainer, toast } from 'react-toastify';
 
 import { useWorkoutContext } from '../hooks/useWorkoutsContext';
 
+
 export const WorkoutForm = () => {
   const [ title, setTitle ] = useState( '' );
   const [ reps, setReps ] = useState( '' );
   const [ load, setLoad ] = useState( '' );
   const [ errorMessage, setErrorMessage ] = useState( false );
-
+  const [ emptyFields, setEmptyFields ] = useState( [] );
   const { dispatch } = useWorkoutContext();
   
   const notify = ( msg ) => {
@@ -23,14 +24,16 @@ export const WorkoutForm = () => {
     createWorkout( workout )
     .then( response => response.json() )
     .then(( data ) => {
-        setTitle( '' );
-        setLoad( '' );
-        setReps( '' );
         console.log( data );
         if ( data.status === 400 || data.status === 401 || data.status === 404 ) {
+            setEmptyFields( data.emptyFields );
             notify( data.data );
             setErrorMessage( true );
         } else {
+            setEmptyFields( [] );
+            setTitle( '' );
+            setLoad( '' );
+            setReps( '' );
             dispatch({
                 type: 'CREATE_WORKOUT',
                 payload: data.data
@@ -51,6 +54,7 @@ export const WorkoutForm = () => {
             id="title"
             onChange={ ( e ) => setTitle( e.target.value ) }
             value={ title }
+            className={ emptyFields.includes( 'title' ) ? 'error' : '' }
         />
         <label htmlFor="load">Excersise Load:</label>
         <input 
@@ -58,6 +62,7 @@ export const WorkoutForm = () => {
             id="load"
             onChange={ ( e ) => setLoad( e.target.value ) }
             value={ load }
+            className={ emptyFields.includes( 'load' ) ? 'error' : '' }
         />
         <label htmlFor="reps">Excersise Reps:</label>
         <input 
@@ -65,6 +70,7 @@ export const WorkoutForm = () => {
             id="reps"
             onChange={ ( e ) => setReps( e.target.value ) }
             value={ reps }
+            className={ emptyFields.includes( 'reps' ) ? 'error' : '' }
         />
         <button>
             Add Workout

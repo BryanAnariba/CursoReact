@@ -12,7 +12,14 @@ const createWorkout = async ( workout ) => {
     });
 }
 
+const deleteWorkout = async ( workoutId ) => {
+    return await fetch( `/api/workouts/${ workoutId }`, {
+        method: 'DELETE'
+    });
+}
+
 export {
     fetchWorkouts,
     createWorkout,
+    deleteWorkout,
 }

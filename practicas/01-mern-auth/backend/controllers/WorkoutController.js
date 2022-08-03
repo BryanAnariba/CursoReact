@@ -4,6 +4,24 @@ const mongoose = require( 'mongoose' );
 
 const save = async ( req = request, res = response ) => {
     const { title, reps, load } = req.body;
+    let emptyFields = [];
+
+    if ( !title ) {
+        emptyFields.push( 'title' );
+    }
+
+    if ( !load ) {
+        emptyFields.push( 'load' );
+    }
+
+    if ( !reps ) {
+        emptyFields.push( 'reps' );
+    }
+
+    if ( emptyFields.length > 0 ) {
+        return res.status( 400 ).json({ status: 400, data: 'Please Complete all fields', emptyFields })
+    }
+
     try {
         const workout = await workoutModel.create({
             title, reps, load
@@ -75,7 +93,7 @@ const deleteOneWorkout = async ( req = request, res = response ) => {
             return res.status( 200 ).json({ status: 200, data: 'No such workout' });    
         }
 
-        return res.status( 204 ).json({ status: 204, data: workout });
+        return res.status( 200 ).json({ status: 204, data: workout });
     } catch ( error ) {
         return res.status( 400 ).json( { status: 400, data: error.message } );
     }
